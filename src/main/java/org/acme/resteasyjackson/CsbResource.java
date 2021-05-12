@@ -14,6 +14,7 @@ import java.util.List;
 public class CsbResource {
 
     @GET
+    @Transactional
     @Produces(MediaType.APPLICATION_JSON)
     public List<Dish> getItems() throws IOException {
         return Dish.listAll();
