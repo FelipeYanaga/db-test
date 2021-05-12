@@ -1,29 +1,73 @@
 package org.acme.resteasyjackson;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+public class Dish {
+    private final String name;
+    private final String ingredients;
+    private String allergens;
+    private String dining;
 
-import javax.persistence.Entity;
 
-@Entity
-public class Dish extends PanacheEntity {
-    private int id;
-    private String name;
-    private String attribute;
-
-    public String getName(){
-        return this.name.toUpperCase();
+    public Dish(String name, String ingredients){
+        this.name = name;
+        this.ingredients = ingredients;
     }
 
-    public void setName(String name){
-        this.name = name.toLowerCase();
+    public static Dish of(String name, String ingredients){
+        return new Dish(name, ingredients);
     }
 
-    public String getAttribute(){
-        return this.attribute.toUpperCase();
+    private Dish(Builder builder){
+        this.name = builder.name;
+        this.ingredients = builder.ingredients;
+        this.allergens = builder.allergens;
+        this.dining = builder.diningHall;
     }
 
-    public void setAttribute(){
-        this.attribute = attribute.toLowerCase();
+    public String getName(){ return this.name;
     }
+
+    public String getIngredients(){return
+     this.ingredients;
+    }
+
+    //Builder
+    public static class Builder {
+        //Required
+        private final String name;
+        private final String ingredients;
+
+        //Optional
+        private String allergens;
+        private String meal;
+        private String diningHall;
+
+        public Builder(String name, String ingredients){
+            this.name = name;
+            this.ingredients = ingredients;
+        }
+
+        public Builder allergens(String allergens){
+            this.allergens = allergens;
+            return this;
+        }
+
+        public Builder meal(String meal){
+            this.meal = meal;
+            return this;
+        }
+
+        public Builder diningHall(String diningHall){
+            this.diningHall = diningHall;
+            return this;
+        }
+
+        public Dish build(){
+            return new Dish(this);
+        }
+
+
+    }
+
+
 
 }
