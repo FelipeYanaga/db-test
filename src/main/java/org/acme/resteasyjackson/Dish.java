@@ -1,15 +1,30 @@
 package org.acme.resteasyjackson;
 
-public class Dish {
-    private final String name;
-    private final String ingredients;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Dish extends PanacheEntity {
+    private String name;
+    private String ingredients;
     private String allergens;
     private String dining;
-
 
     public Dish(String name, String ingredients){
         this.name = name;
         this.ingredients = ingredients;
+    }
+
+    public Dish(String name, String ingredients, String allergens, String dining){
+        this.name = name;
+        this.ingredients = ingredients;
+        this.allergens = allergens;
+        this.dining = dining;
+    }
+
+    public Dish() {
+
     }
 
     public static Dish of(String name, String ingredients){
@@ -26,9 +41,34 @@ public class Dish {
     public String getName(){ return this.name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setIngredients(String ingredients){
+        this.ingredients = ingredients;
+    }
+
     public String getIngredients(){return
      this.ingredients;
     }
+
+    public String getDining(){ return this.dining;
+    }
+
+    public void setDining(String dining){
+        this.dining = dining;
+    }
+
+    public void setAllergens(String allergens){
+        this.allergens = allergens;
+    }
+
+    public String getAllergens(){return
+            this.allergens;
+    }
+
+
 
     //Builder
     public static class Builder {
