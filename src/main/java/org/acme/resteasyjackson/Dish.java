@@ -9,7 +9,7 @@ public class Dish extends PanacheEntity {
     private int id;
     private String name;
     private String attribute;
-
+    private String potato;
     public String getName(){
         return this.name.toUpperCase();
     }
