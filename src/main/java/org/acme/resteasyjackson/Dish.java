@@ -2,11 +2,15 @@ package org.acme.resteasyjackson;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 @Entity
 public class Dish extends PanacheEntity {
     private String name;
+
+    @Lob
     private String ingredients;
     private String allergens;
     private String dining;
