@@ -22,7 +22,7 @@
             function _refreshPageData() {
                 $http({
                     method: 'GET',
-                    url: '/csb'
+                    url: '/psu'
                 }).then(function successCallback(response) {
                     $scope.dishes = response.data;
 

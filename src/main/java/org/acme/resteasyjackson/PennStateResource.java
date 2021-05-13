@@ -12,16 +12,19 @@ import java.util.List;
 @Path("/psu")
 public class PennStateResource {
 
+    private List<Dish> dishes;
+
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public Dish getPennStateDishes() throws IOException {
-        Scraper scraper = new Scraper();
-        List<String> urls = scraper.getMealUrls();
-        List<String> ids = scraper.getPennStateRecipeIds(urls.get(0));
-        Dish dish = scraper.getPennStateDish(ids.get(0));
-        scraper.getPennStateDishes(urls.get(0));
-        return dish;
+    public List<Dish> getPennStateDishes() throws IOException {
+        if (dishes == null){
+            Scraper scraper = new Scraper();
+            List<String> urls = scraper.getMealUrls();
+            List<String> ids = scraper.getPennStateRecipeIds(urls.get(0));
+            dishes = scraper.getPennStateDishes(urls.get(0));
+        }
+        return dishes;
     }
 
 
