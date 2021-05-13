@@ -5,7 +5,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,12 +18,12 @@ public class PennStateResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Dish> getPennStateDishes() throws IOException {
         if (dishes == null){
-            Scraper scraper = new Scraper();
-            List<String> urls = scraper.getMealUrls();
-            List<String> ids = scraper.getPennStateRecipeIds(urls.get(0));
-            dishes = scraper.getPennStateDishes(urls.get(0));
+            UncScraper uncScraper = new UncScraper();
+            List<String> urls = uncScraper.getMealUrls();
+            List<String> ids = uncScraper.getPennStateRecipeIds(urls.get(0));
+            dishes = uncScraper.getPennStateDishes(urls.get(0));
         }
-        return dishes;
+        return Dish.listAll();
     }
 
 
