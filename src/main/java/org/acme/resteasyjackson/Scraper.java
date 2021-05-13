@@ -18,6 +18,7 @@ import org.jsoup.nodes.Element;
 import javax.sound.midi.SysexMessage;
 import javax.swing.*;
 import javax.swing.text.StyledDocument;
+import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -265,6 +266,7 @@ public class Scraper{
         return new Dish.Builder(names.text(),ingredients.text()).allergens(allergens.text()).build();
     }
 
+    @Transactional
     public List<Dish> getPennStateDishes(String mealUrl) throws IOException {
         List<String> recipeIds = getPennStateRecipeIds(mealUrl);
 
