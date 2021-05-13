@@ -1,5 +1,7 @@
 package org.acme.resteasyjackson;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Formatter {
@@ -35,6 +37,11 @@ public class Formatter {
     public String formatName(String s){
             String[] splitString = s.split("<");
             return splitString[0];
+    }
+
+    public String formatPennStateId(String id){
+        String[] splitString = id.split("\\*");
+        return splitString[0] + "*" + splitString[1];
     }
 
 }
